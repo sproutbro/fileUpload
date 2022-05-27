@@ -1,5 +1,6 @@
 package sp.test.file;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -14,5 +15,8 @@ public interface FileMapper {
 
     @Select("select repository_file_name from tbl_file where no = #{no}")
     List<String> selectFileList(int no);
+
+    @Delete("delete from tbl_file where no = #{no}")
+    void deleteFileList(int no);
 
 }

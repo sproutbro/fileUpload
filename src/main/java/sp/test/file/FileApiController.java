@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
@@ -23,7 +24,6 @@ public class FileApiController {
 
     @PostMapping("/fileUpload")
     public void fileUpload(MultipartFile[] files) throws IOException {
-
         int no = 1; //        문서번호
         fileService.fileUpload(no, files);
 
@@ -32,5 +32,15 @@ public class FileApiController {
     @GetMapping("/fileList")
     public List<String> fileList(int no) {
         return fileService.fileList(no);
+    }
+
+    @GetMapping("/fileDownload")
+    public void fileDownload(String fileName, HttpServletResponse response) throws IOException {
+        fileService.fileDownload(fileName, response);
+    }
+
+    @GetMapping("/fileDelete")
+    public void fileDelete(int no) {
+        fileService.fileDelete(no);
     }
 }
